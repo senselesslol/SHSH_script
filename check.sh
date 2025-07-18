@@ -7,13 +7,21 @@ fi
 
 ECID=$1
 MODEL=$2
-GENERATOR="0x1111111111111111"
-SERVER_URL="http://cydia.saurik.com/TSS/controller?action=2/"
 
 if [ "$MODEL" = "iPhone3,1" ]; then
   BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
+elif [ "$MODEL" = "iPhone4,1" ]; then
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
+elif [ "$MODEL" = "iPhone5,1" ]; then
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
+elif [ "$MODEL" = "iPhone5,2" ]; then
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
+elif [ "$MODEL" = "iPhone5,3" ]; then
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
+elif [ "$MODEL" = "iPhone5,4" ]; then
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
 elif [ "$MODEL" = "iPhone6,1" ]; then
-  BUILDS="14A456 14A457"
+  BUILDS="11A465 11A501 11B511 11B554a 11B651 11D201 11D257"
 else
   echo "Model $MODEL not recognized. Please add builds for it in the script."
   exit 1
@@ -27,7 +35,7 @@ for BUILD in $BUILDS; do
   echo "  -> Build $BUILD"
   
   # Run tsschecker, redirect output to /dev/null, but capture exit code
-  ./tsschecker -d "$MODEL" -e "$ECID" --server-url "$SERVER_URL" -s -g "$GENERATOR" --buildid "$BUILD" > /dev/null 2>&1
+  ./tsschecker -d "$MODEL" -e "$ECID" --server-url http://cydia.saurik.com/TSS/controller?action=2/ -s -g 0x1111111111111111 --buildid "$BUILD" > /dev/null 2>&1
   EXITCODE=$?
 
   if [ $EXITCODE -ne 0 ]; then
