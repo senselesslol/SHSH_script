@@ -34,7 +34,6 @@ echo "Running tsschecker for model $MODEL, ECID $ECID..."
 for BUILD in $BUILDS; do
   echo "  -> Build $BUILD"
   
-  # Run tsschecker, redirect output to /dev/null, but capture exit code
   ./tsschecker -d "$MODEL" -e "$ECID" --server-url http://cydia.saurik.com/TSS/controller?action=2/ -s -g 0x1111111111111111 --buildid "$BUILD" > /dev/null 2>&1
   EXITCODE=$?
 
